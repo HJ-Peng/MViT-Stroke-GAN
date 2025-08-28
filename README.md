@@ -4,7 +4,20 @@
 
 Unlike standard CycleGANs with ResNet generators, our model leverages a U-Net-style generator enriched with global context modeling and directional stroke modeling, enabling better structural coherence and artistic expressiveness — all in an **unpaired training setting**.
 
-![Sample Results](assets/output.jpg)  <!-- 请替换为你的效果图 -->
+![Sample Results](assets/output.jpg)  <!-- 请替换为你的效果图 -->+
+
+### 📝 Code Authorship & Attribution
+This codebase is primarily developed by **[JiaPeng He](https://github.com/HJPeng)**, and supported by **[Xingchu Zhang](https://github.com/AliceZhang)** and **[Yiming Xu](https://github.com/BobWang)**.
+
+While the core innovations — including the **MobileViT integration**, **stroke-aware module**, **custom loss design**, and **enhanced training pipeline** — are original, this project is built upon the official [CycleGAN PyTorch implementation](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) by Zhu et al. The following components are adapted or derived from their codebase:
+
+- `networks.py`: Base generator (U-Net) and discriminator architectures
+- `image_pool.py`: Image buffer for stabilizing discriminator training
+- Core training/inference logic in `CycleGAN.py`
+- Dataset loading and preprocessing patterns in `dataset.py`
+We gratefully acknowledge the authors of CycleGAN for their open-source contribution, which greatly facilitated the development of this work
+
+🔧 All modifications and new modules (e.g., Stroke.py, load_mobilevit.py,edge_loss.py) are authored by us.
 
 ## 📁 Code Structure
 
