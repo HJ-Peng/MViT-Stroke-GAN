@@ -47,7 +47,7 @@ Below is a detailed overview of the key files and directories in this project:
 - **Purpose**: Defines the training process, including data loading, preprocessing, training loop, loss recording, visualization, and model checkpoint saving. Training progress can be monitored via TensorBoard, and models are saved periodically.
 
 
-How to Use
+## How to Use
 
 Follow these steps to train and test the Stroke-MViT-GAN model.
 
@@ -113,17 +113,13 @@ Key Notes on Training:
 
 ### 4. Run Inference (Testing)
 
-After training, use test.py to generate sketches from new images:
-
-```bash
-python test.py --input_dir ./test_images --output_dir ./results --checkpoint checkpoints/Edge_Stroke_MViT_cycle_gan_epoch_250.pth
-```
+After training, use `test.py` to generate sketches from new images.
 
 > ⚠️ Critical Note:
 >
-> Do NOT use model.eval() mode for inference. Due to BatchNorm layers, calling eval() causes severe artifacts or distortion in output images.
+> Do NOT use `model.eval()` mode for inference. Due to BatchNorm layers, calling `eval()` causes severe artifacts or distortion in output images.
 >
-> Instead, keep the model in train() mode and disable gradients:
+> Instead, keep the model in `train()` mode and disable gradients:
 >
 > ```python
 > model.train()
@@ -131,5 +127,85 @@ python test.py --input_dir ./test_images --output_dir ./results --checkpoint che
 >     output = model(input)
 > ```
 
+#### How to Run
+1. Place your test images in a folder (e.g., `test_images/`).
+2. Open `test.py` and manually set:
+   - Input image path or directory
+   - Output save path
+   - Model checkpoint path (e.g., `checkpoints/Stroke_MViTGAN.pth`)
+3. Run:
+   ```bash
+   python test.py
 ---
 
+## ⚙️ Training Configuration (From Paper)
+
+The model is trained with the following settings:
+
+- **Framework**: PyTorch
+- **Batch size**: 5
+- **Image size**: 256 × 256
+- **Optimizer**: Adam (β₁ = 0.5, β₂ = 0.999)
+- **Learning rate**: 2 × 10⁻⁴, constant for first 200 epochs, then linearly decayed
+- **Total epochs**: ~250 (adjusted based on validation performance)
+
+### Generator Architecture
+- Two MobileViT blocks (stem + Stage 0–2) embedded in U-Net.
+- Stage 0 and Stage 1 are **frozen** to reduce cost and stabilize training.
+- Stage 2 and other layers are **fine-tuned end-to-end**.
+
+### Loss Weights
+| Loss Type               | Weight |
+|-------------------------|--------|
+| Adversarial (λadv)      | 1.0    |
+| Cycle Consistency (λcyc)| 10.0   |
+| Identity (λidt)         | 0.5    |
+| Edge-Aware (λedge)      | 2.0    |
+| Gradient (λgrad)        | 0.8    |
+| Stroke Consistency (λstroke) | 1.0 |
+
+> **Stroke Loss Internal Weights**:
+> - Structural loss (λstruct): 3.0
+> - Stylistic loss (λstyle): 2.0
+
+
+## 📦 Pretrained Weights
+
+We have released our trained model checkpoints on Hugging Face for easy access and reuse.
+
+🔗 **Download from Hugging Face**:  
+👉 [https://huggingface.co/HJPeng/Stroke_MViTGAN](https://huggingface.co/HJPeng/Stroke_MViTGAN)
+
+### Available Checkpoints
+- `Stroke_MViTGAN.pth`: Trained model (approximately 250 epochs, recommended for inference).
+
+### How to Use
+1. Go to the [Hugging Face model page](https://huggingface.co/HJPeng/Stroke_MViTGAN) and download the `.pth` file.
+2. Place it in the `checkpoints/` directory.
+3. Open `test.py` and **manually set the model path**.
+
+## 📚 Citation
+
+If you find our work or dataset useful in your research, please cite us as follows:
+
+For now, we provide a placeholder BibTeX entry. An updated citation will be provided upon the publication of the paper.
+
+```bibtex
+@misc{stroke-mvit-gan2025,
+  title={},
+  author={},
+  year={2025},
+  note={Work in progress}
+}
+```
+This project is built upon the CycleGAN framework. Please also cite the original CycleGAN paper if you use this codebase:
+
+```bibtex
+@inproceedings{CycleGAN2017,
+  title={Unpaired Image-to-Image Translation using Cycle-Consistent Adversarial Networks},
+  author={Zhu, Jun-Yan and Park, Taesung and Isola, Phillip and Efros, Alexei A},
+  booktitle={Computer Vision (ICCV), 2017 IEEE International Conference on},
+  year={2017}
+}
+```
+🔗 Original Code: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
