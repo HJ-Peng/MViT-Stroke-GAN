@@ -4,7 +4,7 @@
 
 Unlike standard CycleGANs with ResNet generators, our model leverages a U-Net-style generator enriched with global context modeling and directional stroke modeling, enabling better structural coherence and artistic expressiveness — all in an **unpaired training setting**.
 
-![Sample Results](assets/output.jpg)  <!-- 请替换为你的效果图 -->+
+![Sample Results](img/result.png) 
 
 ### 📝 Code Authorship & Attribution
 This codebase is primarily developed by **[JiaPeng He](https://github.com/HJPeng)**, and supported by **[Xingchu Zhang](https://github.com/AliceZhang)** and **[Yiming Xu](https://github.com/BobWang)**.
