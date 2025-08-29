@@ -7,7 +7,7 @@ Unlike standard CycleGANs with ResNet generators, our model leverages a U-Net-st
 ![Sample Results](img/example.png) 
 
 ### 📝 Code Authorship & Attribution
-This codebase is primarily developed by **[JiaPeng He](https://github.com/HJPeng)**, and supported by **[Xingchu Zhang](https://github.com/20031112)** and **[Yiming Xu]([https://github.com/BobWang](https://github.com/Ababaruaa))**.
+This codebase is primarily developed by **[JiaPeng He](https://github.com/HJPeng)**, and supported by **[Xingchu Zhang](https://github.com/20031112)** and **[Yiming Xu](https://github.com/Ababaruaa)**.
 
 While the core innovations — including the **MobileViT integration**, **stroke-aware module**, **custom loss design**, and **enhanced training pipeline** — are original, this project is built upon the official [CycleGAN PyTorch implementation](https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix) by Zhu et al. The following components are adapted or derived from their codebase:
 
