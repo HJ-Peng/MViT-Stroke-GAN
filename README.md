@@ -1,6 +1,6 @@
-# Stroke-MViT-GAN
+# MViT-Stroke-GAN
 
-🎨 **Stroke-MViT-GAN** is a sketch style transfer framework built on the CycleGAN architecture, enhanced with a **Mobile Vision Transformer (MobileViT)** backbone and a **stroke-aware module** for generating high-quality, hand-drawn-like pencil sketches from natural images.
+🎨 **MViT-Stroke-GAN** is a sketch style transfer framework built on the CycleGAN architecture, enhanced with a **Mobile Vision Transformer (MobileViT)** backbone and a **stroke-aware module** for generating high-quality, hand-drawn-like pencil sketches from natural images.
 
 Unlike standard CycleGANs with ResNet generators, our model leverages a U-Net-style generator enriched with global context modeling and directional stroke modeling, enabling better structural coherence and artistic expressiveness — all in an **unpaired training setting**.
 
