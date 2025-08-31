@@ -137,11 +137,18 @@ Key Notes on Training:
 
 After training, use `test.py` to generate sketches from new images.
 
-> ⚠️ Critical Note:
->
-> Do NOT use `model.eval()` mode for inference. Due to BatchNorm layers, calling `eval()` causes severe artifacts or distortion in output images.
->
-> Instead, keep the model in `train()` mode and disable gradients:
+## ⚠️ Important: Use `train()` Mode for Both Training Visualization and Inference
+
+To ensure consistent and artifact-free stylization:
+- **Do not use `model.eval()`** during inference or validation-time visualization.
+- The BatchNorm statistics in `eval()` mode can cause severe distortions due to domain shifts and small batch sizes.
+
+Instead, always keep the model in `train()` mode and disable gradients:
+
+```python
+model.train()
+with torch.no_grad():
+    output = model(input)
 >
 > ```python
 > model.train()
