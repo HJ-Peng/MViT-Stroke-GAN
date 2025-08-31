@@ -145,11 +145,6 @@ To ensure consistent and artifact-free stylization:
 
 Instead, always keep the model in `train()` mode and disable gradients:
 
-```python
-model.train()
-with torch.no_grad():
-    output = model(input)
->
 > ```python
 > model.train()
 > with torch.no_grad():
