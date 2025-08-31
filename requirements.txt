@@ -1,0 +1,17 @@
+# Core PyTorch dependencies
+torch
+torchvision
+torchaudio
+
+# Image processing
+pillow
+
+# Monitoring and logging
+tensorboard
+
+# Model library (required for MobileViT)
+timm
+
+# Optional: Image processing and visualization
+opencv-python
+matplotlib
