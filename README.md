@@ -73,6 +73,15 @@ Make sure you have the following packages installed. We recommend using `conda` 
 conda create -n stroke-mvit python=3.9
 conda activate stroke-mvit
 
+
+# Method 1: Using requirements.txt (Recommended)
+
+# Install all dependencies from requirements.txt
+pip install -r requirements.txt
+
+
+# Method 2: Manual installation
+
 # Install core dependencies
 pip install torch torchvision torchaudio
 pip install pillow tensorboard
